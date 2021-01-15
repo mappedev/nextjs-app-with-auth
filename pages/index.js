@@ -1,7 +1,8 @@
 import auth0 from "./api/utils/auth0";
 
-export default function Home({ user }) {
+export default function Home({ user, token }) {
   console.log("CSR user", user);
+  console.log("CSR token:", token);
 
   return (
     <>
@@ -22,5 +23,8 @@ export async function getServerSideProps({ req, res }) {
     };
   }
 
-  return { props: { user: session.user } };
+  const tokenCache = auth0.tokenCache(req, res);
+  const { accessToken } = await tokenCache.getAccessToken();
+
+  return { props: { user: session.user, token: accessToken } };
 }
