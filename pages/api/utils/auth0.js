@@ -6,8 +6,8 @@ export default initAuth0({
   clientSecret: process.env.AUTH0_CLIENT_SECRET,
   redirectUri: process.env.AUTH0_REDIRECT_URI,
   postLogoutRedirectUri: process.env.AUTH0_POST_LOGOUT_REDIRECT_URI,
-  scope: "openid profile read:current_user update:current_user_metadata",
-  audience: "https://nextjsapp.us.auth0.com/api/v2/",
+  audience: process.env.AUTH0_AUDIENCE,
+  scope: process.env.AUTH0_SCOPE,
   session: {
     cookieSecret: process.env.AUTH0_SESSION_COOKIE_SECRET,
     cookieLifetime: 60 * 60 * 8,
